@@ -4,11 +4,48 @@
              x:Class="JsonPlaceHolderAPP.Views.PostsView"
              Title="PostsView">
     <ScrollView HorizontalOptions="Center" >
-        <VerticalStackLayout HorizontalOptions="Center" >
+
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <!-- Buscar Post por ID -->
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Buscar Post pelo ID" FontSize="Subtitle" />
+                <Entry Placeholder="Digite o ID do post" Keyboard="Numeric" Text="{Binding PostId}" />
+                <Button Text="Buscar Post" Command="{Binding LoadPostByIdCommand}" CommandParameter="{Binding PostId}" />
+            </VerticalStackLayout>
+
+            <!-- Carregar Todos os Posts -->
             <Button 
+                Text="Carregar Todos os Posts" 
                 Command="{Binding GetAllPostsCommand}" 
-                HorizontalOptions="Center"
-                Text="Caregar Postagens"/>
+                HorizontalOptions="Center" />
+
+            <!-- Deletar Post -->
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Deletar Post pelo ID" FontSize="Subtitle" />
+                <Entry Placeholder="Digite o ID do post" Keyboard="Numeric" Text="{Binding DeletePostId}" />
+                <Button Text="Deletar Post" Command="{Binding DeletePostAsyncCommand}" CommandParameter="{Binding DeletePostId}" />
+            </VerticalStackLayout>
+            
+            <!-- Atualizar Post -->
+            <VerticalStackLayout Padding="10" Spacing="10">
+                <Label Text="Atualizar Post pelo ID" FontSize="Subtitle" />
+                <Entry Placeholder="Digite o ID do post" Keyboard="Numeric" Text="{Binding UpdatePostId}" />
+                <Entry Placeholder="Título" Text="{Binding Title}" />
+                <Editor Placeholder="Conteúdo" Text="{Binding Body}" />
+                <Button Text="Atualizar Post" Command="{Binding UpdatePostAsyncCommand}" />
+            </VerticalStackLayout>
+
+            <!-- Criar Post -->
+            <VerticalStackLayout Padding="10" Spacing="20">
+                <Label Text="Criar Post" FontSize="Subtitle" />
+                <Entry Placeholder="Digite o UserId" Keyboard="Numeric" Text="{Binding UserId}" />
+                <Entry Placeholder="Digite o Título" Text="{Binding createPostTitle}" />
+                <Editor Placeholder="Digite o Corpo do Post" HeightRequest="100" Text="{Binding createPostBody}" />
+                <Button Text="Criar Post" Command="{Binding CreatePostCommand}" />
+            </VerticalStackLayout>
+
+            <!-- Listar Posts -->
             <CollectionView ItemsSource="{Binding Posts}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -27,6 +64,7 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+            
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
